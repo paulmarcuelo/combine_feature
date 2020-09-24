@@ -1,0 +1,18 @@
+<h1>Carts</h1>
+<h4> <%= link_to "Go back to home page", products_path %> </h4>
+<hr>
+
+<%= form_with(url: checkout_create_url, method: 'post') do |form| %>
+    <% current_user.carts.each do |cart| %>
+        <p>
+            <%= form.label :product, cart.product.name %>
+            <%= form.number_field :product, name: 'quantity[]', value: cart.quantity, min: 1 %>
+            <%= form.hidden_field 'product_id[]', value: cart.product.id %>
+            <p>
+                Price: <%= cart.product.price %>
+            </p>
+        </p>
+    <% end %>
+    <hr>
+    <%= form.submit 'Checkout', class: 'btn btn-primary' %>
+<% end %>

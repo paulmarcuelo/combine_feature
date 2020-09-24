@@ -1,0 +1,21 @@
+<h1>Messages</h1>
+<br>
+<h4> <%= @user2.email %> </h4>
+<hr>
+<div id="room_name" room-name="<%= @room %>"></div>
+<div id="messages" style="height: 400px;">
+    <% @chats.each do |chat| %>
+        <%= render 'room/chat', chat: chat %>
+    <% end %>
+</div>
+<div id="chatbox">
+    <%= form_with(url: message_create_url, method: 'post', id: 'new_chat') do |form| %>
+        <div class="input-group">
+            <%= form.text_field :body, class: 'form-control'%>
+            <%= form.hidden_field :room, value: @room %>
+            <div class="input-group-append">
+                <%= form.submit 'Send', class: 'btn btn-secondary' %>
+            </div>
+        </div>
+    <% end %>
+</div>

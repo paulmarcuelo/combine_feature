@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= current_user.email %></h1>
+<hr>
+<h1>Products</h1>
+<h4> <%= link_to 'Cart', carts_path %> </h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= button_to "Buy now", checkout_create_path, method: :post, remote: true, params: {product_id: product.id, quantity: 1} %></td>
+        <td><%= button_to "Add to cart", @cart, method: :post, remote: true, params: {product_id: product.id, quantity: 1, user_id: current_user.id} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
