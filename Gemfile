@@ -39,6 +39,7 @@ end
 group :production do
   
 end
+gem "aws-sdk-s3", require: false
 gem 'pg'
 gem 'redis', '~> 4.0'
 gem 'capistrano', '~> 3.11'
