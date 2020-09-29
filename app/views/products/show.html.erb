@@ -18,7 +18,7 @@
 <% if @product.images.attached? %>
   <% @product.images.each do |image| %>
     <p>
-      <%= image_tag(image.variant(resize: "300X300!").processed) %>
+      <%= image_tag(image.variant(resize: "300x300!").processed) %>
     </p>
   <% end %>
 <% end %>
